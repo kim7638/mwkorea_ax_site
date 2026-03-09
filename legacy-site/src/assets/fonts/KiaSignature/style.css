@@ -1,0 +1,29 @@
+@font-face {
+  font-family: 'KiaSignature';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  text-rendering: optimizeLegibility;
+  src: url('./woff2/KiaSignatureLight.woff2') format('woff2'),
+       url('./woff/KiaSignatureLight.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'KiaSignature';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  text-rendering: optimizeLegibility;
+  src: url('./woff2/KiaSignatureRegular.woff2') format('woff2'),
+       url('./woff/KiaSignatureRegular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'KiaSignature';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  text-rendering: optimizeLegibility;
+  src: url('./woff2/KiaSignatureBold.woff2') format('woff2'),
+       url('./woff/KiaSignatureBold.woff') format('woff');
+}

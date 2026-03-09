@@ -1,0 +1,34 @@
+name: dev-deploy
+
+on:
+  push:
+    branches: [dev]
+  pull_request:
+    branches: [dev]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code.
+        uses: actions/checkout@master
+
+      - name: Install
+        run: yarn
+
+      - name: Clean
+        run: yarn clean
+
+      - name: Build
+        run: yarn build --prefix-paths
+
+      - name: Deploy
+        uses: SamKirkland/FTP-Deploy-Action@master
+        with:
+          server: ${{ secrets.FTP_DEV_HOST }}
+          username: ${{ secrets.FTP_DEV_USERNAME }}
+          password: ${{ secrets.FTP_DEV_PASSWORD }}
+          local-dir: ./public/
+          server-dir: ${{ secrets.FTP_DEV_DIR }}
+          # server-dir: /VOL1/www_document_root/mwk-home/

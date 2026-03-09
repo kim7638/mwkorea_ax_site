@@ -1,0 +1,34 @@
+//font
+$font-default: '맑은고딕', 'Malgun Gothic', '돋움', Dotum, 'Apple Gothic', sans-serif;
+$font-nanum-square: 'NanumSquare';
+$font-nanum-square-round: 'NanumSquareRound';
+$font-montserrat: 'Montserrat';
+$font-noto-sans: 'Noto Sans Korean';
+$font-genesis-sans-head: 'GenesisSansHeadKR';
+$font-genesis-sans-text: 'GenesisSansTextKR';
+$font-dm-serif-display: 'DMSerifDisplay';
+$font-open-sans: 'OpenSans';
+$font-evr-sans: 'SpoqaHanSansNeo';
+$font-pretendard: 'Pretendard';
+$font-kia-signature: 'KiaSignature';
+
+// colors
+$color-white: #fff;
+$color-primary: #1a1a1a;
+$color-secondary: rgba(#1a1a1a, 0.3);
+/*
+$color-tertiary: #202020;
+$color-quaternary: #202020;
+$color-quinary: #202020;
+*/
+
+// width
+$width-wide: 1400px;
+$width-contents: 1120px;
+
+//margin
+$margin-tablet-side: 50px;
+$margin-mobile-side: 20px;
+
+// shadow
+$deviceShadow: 20px 30px 90px 0 rgba(0, 0, 0, 0.14);

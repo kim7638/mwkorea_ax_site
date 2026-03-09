@@ -1,0 +1,78 @@
+@import 'assets/fonts/Montserrat/style.css';
+@import 'assets/fonts/NanumSquare/style.css';
+@import 'assets/fonts/NanumSquareRound/style.css';
+@import 'assets/fonts/NotoSansKR-Hestia/style.css';
+@import 'assets/fonts/GenesisSansHeadKR/style.css';
+@import 'assets/fonts/GenesisSansTextKR/style.css';
+@import 'assets/fonts/DMSerifDisplay/style.css';
+@import 'assets/fonts/OpenSans/style.css';
+@import 'assets/fonts/SpoqaHanSansNeo/style.css';
+@import 'assets/fonts/pretendard-subset/style.css';
+@import 'assets/fonts/KiaSignature/style.css';
+
+@import 'assets/styles/variable.scss';
+
+html,
+body,
+pre,
+button,
+select,
+textarea,
+[type='button'],
+[type='submit'],
+[type='text'],
+[type='password'],
+[type='search'],
+[type='email'],
+[type='url'],
+[type='number'],
+[type='tel'],
+[type='file'],
+[type='date'],
+[type='time'] {
+  font-family: $font-montserrat, $font-nanum-square, $font-default;
+  color: $color-primary;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
+button:focus,
+[type='button']:focus,
+[type='submit']:focus {
+  outline-width: 1px;
+  outline-style: dotted;
+}
+
+label {
+  cursor: pointer;
+}
+
+@-moz-document url-prefix() {
+  select {
+    text-indent: -2px;
+  }
+}
+
+html {
+  overflow-x: auto;
+  overflow-y: scroll;
+
+  &.is-scroll-blocking {
+    &,
+    & #___gatsby {
+      overflow: hidden;
+    }
+  }
+}
+
+html,
+body {
+  margin: 0;
+}
+
+html,
+body,
+#___gatsby,
+#gatsby-focus-wrapper {
+  height: 100%;
+}

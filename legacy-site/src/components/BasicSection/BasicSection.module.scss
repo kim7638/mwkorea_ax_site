@@ -1,0 +1,27 @@
+@import 'assets/styles/variable.scss';
+@import 'assets/styles/mixins.scss';
+
+.section {
+  width: $width-contents;
+  margin: 0 auto;
+
+  @include media-tablet {
+    width: auto;
+    margin-left: $margin-tablet-side;
+    margin-right: $margin-tablet-side;
+  }
+
+  @include media-mobile {
+    margin-left: $margin-mobile-side;
+    margin-right: $margin-mobile-side;
+  }
+}
+
+.head {
+  position: relative;
+  margin-bottom: 40px;
+
+  @include media-tablet {
+    margin-bottom: 20px;
+  }
+}

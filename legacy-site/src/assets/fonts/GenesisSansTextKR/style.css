@@ -1,0 +1,35 @@
+@font-face {
+  font-family: 'GenesisSansTextKR';
+  font-style: normal;
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+  src: url('./eot/GenesisSansTextKRRegular.eot'),
+    url('./eot/GenesisSansTextKRRegular.eot?#iefix') format('embedded-opentype'),
+    url('./woff2/GenesisSansTextKRRegular.woff2') format('woff2'),
+    url('./woff/GenesisSansTextKRRegular.woff') format('woff'),
+    url('./ttf/GenesisSansTextKRRegular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'GenesisSansTextKR';
+  font-style: normal;
+  font-weight: 500;
+  text-rendering: optimizeLegibility;
+  src: url('./eot/GenesisSansTextKRMedium.eot'),
+    url('./eot/GenesisSansTextKRMedium.eot?#iefix') format('embedded-opentype'),
+    url('./woff2/GenesisSansTextKRMedium.woff2') format('woff2'),
+    url('./woff/GenesisSansTextKRMedium.woff') format('woff'),
+    url('./ttf/GenesisSansTextKRMedium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'GenesisSansTextKR';
+  font-style: normal;
+  font-weight: 700;
+  text-rendering: optimizeLegibility;
+  src: url('./eot/GenesisSansTextKRBold.eot'),
+    url('./eot/GenesisSansTextKRBold.eot?#iefix') format('embedded-opentype'),
+    url('./woff2/GenesisSansTextKRBold.woff2') format('woff2'),
+    url('./woff/GenesisSansTextKRBold.woff') format('woff'),
+    url('./ttf/GenesisSansTextKRBold.ttf') format('truetype');
+}

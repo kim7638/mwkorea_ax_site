@@ -1,0 +1,23 @@
+@font-face {
+  font-family: 'GenesisSansHeadKR';
+  font-style: normal;
+  font-weight: 300;
+  text-rendering: optimizeLegibility;
+  src: url('./eot/GenesisSansHeadKRLight.eot'),
+    url('./eot/GenesisSansHeadKRLight.eot?#iefix') format('embedded-opentype'),
+    url('./woff2/GenesisSansHeadKRLight.woff2') format('woff2'),
+    url('./woff/GenesisSansHeadKRLight.woff') format('woff'),
+    url('./ttf/GenesisSansHeadKRLight.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'GenesisSansHeadKR';
+  font-style: normal;
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+  src: url('./eot/GenesisSansHeadKRRegular.eot'),
+    url('./eot/GenesisSansHeadKRRegular.eot?#iefix') format('embedded-opentype'),
+    url('./woff2/GenesisSansHeadKRRegular.woff2') format('woff2'),
+    url('./woff/GenesisSansHeadKRRegular.woff') format('woff'),
+    url('./ttf/GenesisSansHeadKRRegular.ttf') format('truetype');
+}

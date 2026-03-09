@@ -1,0 +1,72 @@
+@import 'assets/styles/variable.scss';
+@import 'assets/styles/mixins.scss';
+
+.wrap {
+  background: no-repeat 50% 0;
+
+  @include media-tablet {
+    background-position: 50% 50%;
+    background-size: cover;
+  }
+}
+
+.contents {
+  position: relative;
+  z-index: 0;
+  @include inner-wrap;
+  min-height: 880px;
+
+  &::before {
+    content: '';
+    display: table;
+  }
+
+  @include floating-clear;
+
+  @include media-tablet {
+    min-height: 1024px;
+  }
+
+  @include media-mobile {
+    min-height: 640px;
+  }
+}
+
+.title {
+  position: relative;
+  z-index: 20;
+  margin: 230px 0 0;
+  float: left;
+  @include title-text;
+
+  .is-dark & {
+    color: $color-white;
+  }
+
+  @include media-tablet {
+    float: none;
+    margin-top: 156px;
+  }
+
+  @include media-mobile {
+    margin-top: 116px;
+  }
+}
+
+.phone {
+  @include phone-frame;
+
+  position: relative;
+  z-index: 10;
+  float: right;
+  margin: 252px 202px 0 0;
+
+  @include media-tablet {
+    float: none;
+    margin: 80px auto 0;
+  }
+
+  @include media-mobile {
+    margin-top: 60px;
+  }
+}

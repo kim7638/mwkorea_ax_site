@@ -1,0 +1,45 @@
+{
+  "name": "mobile-works-korea-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Mobile Works Korea Site",
+  "author": "mwk",
+  "keywords": [
+    "gatsby"
+  ],
+  "scripts": {
+    "develop": "gatsby develop --open",
+    "start": "gatsby develop --open",
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean"
+  },
+  "dependencies": {
+    "autoprefixer": "^10.4.13",
+    "classnames": "^2.3.2",
+    "core-js": "^3.27.1",
+    "gatsby": "^5.3.3",
+    "gatsby-plugin-gatsby-cloud": "^5.3.1",
+    "gatsby-plugin-polyfill-io": "^1.1.0",
+    "gatsby-plugin-react-helmet": "^6.3.0",
+    "gatsby-plugin-react-svg": "^3.3.0",
+    "gatsby-plugin-sass": "^6.3.1",
+    "react": "^18.2.0",
+    "react-app-polyfill": "^3.0.0",
+    "react-dom": "^18.2.0",
+    "react-helmet": "^6.1.0",
+    "react-redux": "^8.0.5",
+    "redux": "^4.2.0",
+    "regenerator-runtime": "^0.13.11",
+    "sass": "^1.57.1",
+    "swiper": "^8.4.5"
+  },
+  "browserslist": [
+    "last 4 version",
+    "IE >= 10",
+    "android >= 4.4"
+  ],
+  "devDependencies": {
+    "gatsby-plugin-root-import": "^2.0.9"
+  }
+}

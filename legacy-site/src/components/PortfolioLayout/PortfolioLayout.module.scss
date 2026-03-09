@@ -1,0 +1,77 @@
+@import 'assets/styles/variable.scss';
+@import 'assets/styles/mixins.scss';
+
+.wrap {
+  height: 100%;
+}
+
+.head {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 40px $margin-tablet-side 0;
+  background-color: rgba($color-white, 0);
+  transition: background-color 0.3s;
+
+  .is-scroll & {
+    background-color: rgba($color-white, 1);
+  }
+
+  @include media-mobile {
+    padding: 17px $margin-mobile-side 3px;
+  }
+}
+
+.back {
+  @include reset-button;
+
+  display: block;
+  width: 60px;
+  height: 60px;
+  margin-left: -10px;
+
+  &__icon {
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    path {
+      stroke: $color-primary;
+      transition: stroke 0.3s;
+    }
+  }
+
+  .is-dark &__icon {
+    path {
+      stroke: $color-white;
+    }
+  }
+
+  .is-dark.is-scroll &__icon {
+    path {
+      stroke: $color-primary;
+    }
+  }
+
+  @include media-mobile {
+    width: 40px;
+    height: 40px;
+    margin-left: -6px;
+  }
+}
+
+.body {
+  overflow: hidden;
+  margin-bottom: 120px;
+
+  @include media-tablet {
+    margin-bottom: 90px;
+  }
+
+  @include media-mobile {
+    margin-bottom: 80px;
+  }
+}

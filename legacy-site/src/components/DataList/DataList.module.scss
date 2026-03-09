@@ -1,0 +1,60 @@
+@import 'assets/styles/variable.scss';
+@import 'assets/styles/mixins.scss';
+
+.wrap {
+  &::before {
+    content: '';
+    display: table;
+  }
+}
+
+.list {
+  margin: -10px 0 0 -60px;
+  font-size: 0;
+  line-height: 0;
+
+  @include media-tablet {
+    margin-left: -20px;
+  }
+}
+
+.item {
+  display: inline-block;
+  vertical-align: top;
+  margin: 10px 0 0 60px;
+
+  @include media-tablet {
+    margin-left: 20px;
+  }
+}
+
+.key {
+  display: inline-block;
+  vertical-align: top;
+  font-size: 16px;
+  line-height: 19px;
+  font-weight: 700;
+  margin-right: 20px;
+
+  @include media-tablet {
+    margin-right: 8px;
+  }
+
+  @include media-mobile {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}
+
+.val {
+  margin: 0;
+  display: inline-block;
+  vertical-align: top;
+  font-size: 16px;
+  line-height: 19px;
+
+  @include media-mobile {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}

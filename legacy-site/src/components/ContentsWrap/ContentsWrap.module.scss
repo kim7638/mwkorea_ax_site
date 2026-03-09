@@ -1,0 +1,18 @@
+@import 'assets/styles/variable.scss';
+@import 'assets/styles/mixins.scss';
+
+.wrap {
+  position: relative;
+  @include inner-wrap;
+  padding-top: 200px;
+  padding-bottom: 60px;
+
+  @include media-tablet {
+    padding-top: 180px;
+  }
+
+  @include media-mobile {
+    padding-top: 120px;
+    padding-bottom: 40px;
+  }
+}

@@ -1,0 +1,26 @@
+@import 'assets/styles/variable.scss';
+@import 'assets/styles/mixins.scss';
+
+.contents {
+  position: relative;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+  }
+  img:global(.is-pc-only) {
+    display: block;
+    position: relative;
+    left: 50%;
+    margin-left: -960px;
+    width: 1920px;
+
+    @include media-tablet {
+      display: none;
+    }
+
+    @include media-mobile {
+      display: none;
+    }
+  }
+}

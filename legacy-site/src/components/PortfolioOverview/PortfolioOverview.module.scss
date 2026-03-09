@@ -1,0 +1,17 @@
+@import 'assets/styles/variable.scss';
+@import 'assets/styles/mixins.scss';
+
+.section {
+  margin-bottom: 320px;
+
+  @include media-tablet {
+    margin-bottom: 240px;
+  }
+
+  @include media-mobile {
+    margin-bottom: 160px;
+  }
+}
+.info {
+  margin-bottom: 20px;
+}

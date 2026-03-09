@@ -1,0 +1,22 @@
+@font-face {
+  font-family: 'DMSerifDisplay';
+  font-style: normal;
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+  src: url('./eot/DMSerifDisplay-Regular.eot'),
+    url('./eot/DMSerifDisplay-Regular.eot?#iefix') format('embedded-opentype'),
+    url('./woff2/DMSerifDisplay-Regular.woff2') format('woff2'),
+    url('./woff/DMSerifDisplay-Regular.woff') format('woff'),
+    url('./ttf/DMSerifDisplay-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'DMSerifDisplay';
+  font-style: italic;
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+  src: url('./eot/DMSerifDisplay-Italic.eot'),
+    url('./eot/DMSerifDisplay-Italic.eot?#iefix') format('embedded-opentype'),
+    url('./woff2/DMSerifDisplay-Italic.woff2') format('woff2'),
+    url('./woff/DMSerifDisplay-Italic.woff') format('woff'),
+    url('./ttf/DMSerifDisplay-Italic.ttf') format('truetype');
+}

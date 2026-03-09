@@ -1,0 +1,36 @@
+name: deploy
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code.
+        uses: actions/checkout@master
+
+      - name: Install
+        run: yarn
+
+      - name: Clean
+        run: yarn clean
+
+      - name: Build
+        run: yarn build
+
+      - name: Deploy
+        uses: SamKirkland/FTP-Deploy-Action@master
+        with:
+          server: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_KEY }}
+          local-dir: ./public/
+          timeout: 600000
+          exclude: |
+            **/.htaccess
+            **/static-contents/**

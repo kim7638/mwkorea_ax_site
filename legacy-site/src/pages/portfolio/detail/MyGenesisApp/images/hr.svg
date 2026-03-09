@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160">
+    <defs>
+        <style>
+            .cls-2{fill:#a16b4f}
+        </style>
+    </defs>
+    <g id="img_splash" transform="translate(-880 -2662)">
+        <path id="사각형_10258" fill="none" d="M0 0H160V160H0z" transform="translate(880 2662)"/>
+        <g id="splash" transform="translate(0 8)">
+            <path id="사각형_7677" d="M0 0H124V5H0z" class="cls-2" transform="translate(898 2682)"/>
+            <path id="사각형_7678" d="M0 0H124V5H0z" class="cls-2" transform="translate(898 2709)"/>
+            <text id="MY_GENESIS" font-family="GenesisSansHeadGlobal-Regular, Genesis Sans Head Global" font-size="22px" letter-spacing="-0.01em" transform="translate(960 2781)">
+                <tspan x="-59.928" y="0">MY GENESIS</tspan>
+            </text>
+        </g>
+    </g>
+</svg>
