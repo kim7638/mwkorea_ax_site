@@ -1,32 +1,45 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Sora, DM_Sans } from 'next/font/google';
 import './globals.css';
+import Header from '@/components/layout/Header';
+import Footer from '@/components/layout/Footer';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
+const sora = Sora({
   subsets: ['latin'],
+  variable: '--font-sora',
+  weight: ['300', '400', '500', '600', '700', '800'],
+  display: 'swap',
 });
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
+const dmSans = DM_Sans({
   subsets: ['latin'],
+  variable: '--font-dm-sans',
+  weight: ['300', '400', '500', '600'],
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
-  title: 'Mobile Works Korea — Enterprise AI Service Builder',
+  title: {
+    default: 'Mobile Works Korea — Enterprise AI Service Builder',
+    template: '%s | Mobile Works Korea',
+  },
   description:
-    '기업의 AX 전환을 위한 서비스 기획, 구축, 운영까지 연결하는 디지털 파트너.',
+    'We build AI services and evolve how enterprise services are built with AI. AX Strategy, AI Product Development, AI Operations, and Enterprise Digital Delivery.',
+  keywords: ['AX', 'AI transformation', 'enterprise AI', 'AI consulting', 'Korea', 'AI product development'],
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    siteName: 'Mobile Works Korea',
+  },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ko">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        {children}
+    <html lang="en" className={`${sora.variable} ${dmSans.variable}`}>
+      <body className="min-h-screen flex flex-col">
+        <Header />
+        <main className="flex-1">{children}</main>
+        <Footer />
       </body>
     </html>
   );
