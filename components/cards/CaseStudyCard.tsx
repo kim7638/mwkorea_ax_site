@@ -23,16 +23,20 @@ export default function CaseStudyCard({ caseStudy, featured = false }: CaseStudy
       <div
         className={cn(
           'relative overflow-hidden bg-gray-100',
-          featured ? 'md:w-1/2 h-64 md:h-auto' : 'h-52'
+          featured ? 'md:w-1/2 h-64 md:h-64' : 'h-52'
         )}
       >
-        <Image
-          src={caseStudy.heroImage}
-          alt={caseStudy.title}
-          fill
-          className="object-cover group-hover:scale-105 transition-transform duration-500"
-          sizes="(max-width: 768px) 100vw, 50vw"
-        />
+        {caseStudy.heroImage ? (
+          <Image
+            src={caseStudy.heroImage}
+            alt={caseStudy.title}
+            fill
+            className="object-cover group-hover:scale-105 transition-transform duration-500"
+            sizes="(max-width: 768px) 100vw, 50vw"
+          />
+        ) : (
+          <div className="absolute inset-0 bg-gradient-to-br from-gray-200 to-gray-300" />
+        )}
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
         <div className="absolute bottom-4 left-4">
           <Badge variant="brand">{caseStudy.year}</Badge>
