@@ -1,17 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { validateSession } from '@/lib/auth'
-import { supabaseAdmin } from '@/lib/supabase'
+import { getSupabaseAdmin } from '@/lib/supabase'
 
 export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
   const valid = await validateSession()
   if (!valid) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
   const body = await request.json()
-  const { title, slug, summary, content, thumbnail_url, client, industry, tags, sort_order, is_featured, is_published } = body
+  const { title, slug, client, industry, year, summary, hero_image, problem, approach, solution, outcome, thumbnail_url, tags, sort_order, is_featured, is_published } = body
 
-  const { data, error } = await supabaseAdmin
+  const { data, error } = await getSupabaseAdmin()
     .from('case_studies')
-    .update({ title, slug, summary, content, thumbnail_url, client, industry, tags, sort_order, is_featured, is_published })
+    .update({ title, slug, client, industry, year, summary, hero_image, problem, approach, solution, outcome, thumbnail_url, tags, sort_order, is_featured, is_published })
     .eq('id', params.id)
     .select()
     .single()
@@ -25,7 +25,7 @@ export async function DELETE(request: NextRequest, { params }: { params: { id: s
   const valid = await validateSession()
   if (!valid) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
-  const { error } = await supabaseAdmin
+  const { error } = await getSupabaseAdmin()
     .from('case_studies')
     .delete()
     .eq('id', params.id)

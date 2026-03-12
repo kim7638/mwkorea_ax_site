@@ -6,28 +6,33 @@ import Link from 'next/link';
 import PageContainer from '@/components/layout/PageContainer';
 import Badge from '@/components/ui/Badge';
 import CTABanner from '@/components/sections/CTABanner';
-import { getPortfolioItemBySlug, getPublishedPortfolioItems } from '@/data/portfolio';
+import { getSupabaseAdmin } from '@/lib/supabase';
+
+export const dynamic = 'force-dynamic';
 
 interface Props {
   params: { slug: string };
 }
 
-export async function generateStaticParams() {
-  const items = getPublishedPortfolioItems();
-  return items.map((item) => ({ slug: item.slug }));
-}
-
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const item = getPortfolioItemBySlug(params.slug);
+  const { data: item } = await getSupabaseAdmin()
+    .from('portfolio_items')
+    .select('title, short_description')
+    .eq('slug', params.slug)
+    .eq('is_published', true)
+    .single();
   if (!item) return { title: 'Not Found' };
-  return {
-    title: item.title,
-    description: item.shortDescription,
-  };
+  return { title: item.title, description: item.short_description };
 }
 
-export default function PortfolioDetailPage({ params }: Props) {
-  const item = getPortfolioItemBySlug(params.slug);
+export default async function PortfolioDetailPage({ params }: Props) {
+  const { data: item } = await getSupabaseAdmin()
+    .from('portfolio_items')
+    .select('*')
+    .eq('slug', params.slug)
+    .eq('is_published', true)
+    .single();
+
   if (!item) notFound();
 
   return (
@@ -45,18 +50,18 @@ export default function PortfolioDetailPage({ params }: Props) {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
             <div>
               <div className="flex flex-wrap gap-2 mb-5">
-                <Badge variant="brand">{item.client}</Badge>
-                <Badge variant="subtle">{item.industry}</Badge>
-                <Badge>{item.year}</Badge>
+                {item.client && <Badge variant="brand">{item.client}</Badge>}
+                {item.industry && <Badge variant="subtle">{item.industry}</Badge>}
+                {item.year && <Badge>{item.year}</Badge>}
               </div>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-700 text-gray-900 leading-tight tracking-tight mb-5">
                 {item.title}
               </h1>
               <p className="text-lg text-gray-500 leading-relaxed mb-6">
-                {item.overview}
+                {item.overview || item.short_description}
               </p>
               <div className="flex flex-wrap gap-2">
-                {item.tags.map((tag) => (
+                {(item.tags || []).map((tag: string) => (
                   <span key={tag} className="text-xs bg-white border border-gray-200 text-gray-600 px-3 py-1 rounded-full">
                     {tag}
                   </span>
@@ -65,39 +70,43 @@ export default function PortfolioDetailPage({ params }: Props) {
             </div>
 
             {/* Hero Image */}
-            <div className="relative h-72 sm:h-96 rounded-2xl overflow-hidden">
-              <Image
-                src={item.thumbnail}
-                alt={item.title}
-                fill
-                className="object-cover"
-                priority
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-            </div>
+            {item.thumbnail_url && (
+              <div className="relative h-72 sm:h-96 rounded-2xl overflow-hidden">
+                <Image
+                  src={item.thumbnail_url}
+                  alt={item.title}
+                  fill
+                  className="object-cover"
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+              </div>
+            )}
           </div>
         </PageContainer>
       </section>
 
       {/* Description */}
-      <section className="py-16 sm:py-24 bg-white">
-        <PageContainer>
-          <div className="max-w-3xl">
-            <p className="text-xs font-semibold text-brand uppercase tracking-widest mb-4">Project Overview</p>
-            <p className="text-lg text-gray-600 leading-relaxed">
-              {item.description}
-            </p>
-          </div>
-        </PageContainer>
-      </section>
+      {item.description && (
+        <section className="py-16 sm:py-24 bg-white">
+          <PageContainer>
+            <div className="max-w-3xl">
+              <p className="text-xs font-semibold text-brand uppercase tracking-widest mb-4">Project Overview</p>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                {item.description}
+              </p>
+            </div>
+          </PageContainer>
+        </section>
+      )}
 
       {/* Image Gallery */}
-      {item.images.length > 0 && (
+      {item.images?.length > 0 && (
         <section className="pb-16 sm:pb-24 bg-white">
           <PageContainer>
             <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-6">Gallery</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {item.images.map((img, i) => (
+              {item.images.map((img: string, i: number) => (
                 <div key={i} className="relative h-52 sm:h-60 rounded-xl overflow-hidden bg-gray-100">
                   <Image
                     src={img}

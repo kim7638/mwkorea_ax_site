@@ -1,6 +1,6 @@
 import { redirect, notFound } from 'next/navigation'
 import { validateSession } from '@/lib/auth'
-import { supabaseAdmin } from '@/lib/supabase'
+import { getSupabaseAdmin } from '@/lib/supabase'
 import AdminNav from '../../../AdminNav'
 import CaseStudyForm from '../../CaseStudyForm'
 
@@ -8,7 +8,7 @@ export default async function EditCaseStudyPage({ params }: { params: { id: stri
   const valid = await validateSession()
   if (!valid) redirect('/admin/login')
 
-  const { data: item } = await supabaseAdmin
+  const { data: item } = await getSupabaseAdmin()
     .from('case_studies')
     .select('*')
     .eq('id', params.id)
@@ -19,11 +19,16 @@ export default async function EditCaseStudyPage({ params }: { params: { id: stri
   const initialData = {
     title: item.title,
     slug: item.slug,
-    summary: item.summary || '',
-    content: item.content || '',
-    thumbnail_url: item.thumbnail_url || '',
     client: item.client || '',
     industry: item.industry || '',
+    year: item.year ? String(item.year) : '',
+    summary: item.summary || '',
+    hero_image: item.hero_image || '',
+    problem: item.problem || '',
+    approach: item.approach || '',
+    solution: item.solution || '',
+    outcome: item.outcome || '',
+    thumbnail_url: item.thumbnail_url || '',
     tags: (item.tags || []).join(', '),
     sort_order: item.sort_order,
     is_featured: item.is_featured,

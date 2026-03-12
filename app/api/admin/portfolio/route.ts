@@ -1,21 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { validateSession } from '@/lib/auth'
-import { supabaseAdmin } from '@/lib/supabase'
+import { getSupabaseAdmin } from '@/lib/supabase'
 
 export async function POST(request: NextRequest) {
   const valid = await validateSession()
   if (!valid) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
   const body = await request.json()
-  const { title, slug, description, thumbnail_url, images, tags, sort_order, is_published } = body
+  const { title, slug, client, industry, year, short_description, overview, description, thumbnail_url, images, tags, sort_order, is_published } = body
 
   if (!title || !slug) {
     return NextResponse.json({ error: 'Title and slug are required' }, { status: 400 })
   }
 
-  const { data, error } = await supabaseAdmin
+  const { data, error } = await getSupabaseAdmin()
     .from('portfolio_items')
-    .insert({ title, slug, description, thumbnail_url, images, tags, sort_order, is_published })
+    .insert({ title, slug, client, industry, year, short_description, overview, description, thumbnail_url, images, tags, sort_order, is_published })
     .select()
     .single()
 

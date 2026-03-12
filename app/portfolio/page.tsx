@@ -2,15 +2,39 @@ import { Metadata } from 'next';
 import PageContainer from '@/components/layout/PageContainer';
 import PortfolioCard from '@/components/cards/PortfolioCard';
 import CTABanner from '@/components/sections/CTABanner';
-import { getPublishedPortfolioItems } from '@/data/portfolio';
+import { getSupabaseAdmin } from '@/lib/supabase';
+
+export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: 'Portfolio',
   description: 'A selection of AI and enterprise digital projects delivered by Mobile Works Korea.',
 };
 
-export default function PortfolioPage() {
-  const items = getPublishedPortfolioItems();
+export default async function PortfolioPage() {
+  const { data: items } = await getSupabaseAdmin()
+    .from('portfolio_items')
+    .select('id, title, slug, short_description, thumbnail_url, client, industry, year, tags, sort_order')
+    .eq('is_published', true)
+    .order('sort_order', { ascending: true });
+
+  // Map Supabase fields to PortfolioCard-compatible shape
+  const published = (items || []).map((item) => ({
+    id: item.id,
+    slug: item.slug,
+    title: item.title,
+    client: item.client || '',
+    industry: item.industry || '',
+    thumbnail: item.thumbnail_url || '',
+    shortDescription: item.short_description || '',
+    overview: item.short_description || '',
+    description: item.short_description || '',
+    images: [],
+    tags: item.tags || [],
+    year: item.year || new Date().getFullYear(),
+    published: true,
+    order: item.sort_order,
+  }));
 
   return (
     <>
@@ -33,7 +57,7 @@ export default function PortfolioPage() {
       <section className="py-16 sm:py-24 bg-white">
         <PageContainer>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {items.map((item) => (
+            {published.map((item) => (
               <PortfolioCard key={item.id} item={item} />
             ))}
           </div>

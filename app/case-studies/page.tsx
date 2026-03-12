@@ -2,15 +2,42 @@ import { Metadata } from 'next';
 import PageContainer from '@/components/layout/PageContainer';
 import CaseStudyCard from '@/components/cards/CaseStudyCard';
 import CTABanner from '@/components/sections/CTABanner';
-import { caseStudies } from '@/data/caseStudies';
+import { getSupabaseAdmin } from '@/lib/supabase';
+
+export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: 'Case Studies',
   description: 'In-depth case studies from Mobile Works Korea — strategic AI transformations for Korea\'s leading enterprises.',
 };
 
-export default function CaseStudiesPage() {
-  const published = caseStudies.filter((cs) => cs.published).sort((a, b) => a.order - b.order);
+export default async function CaseStudiesPage() {
+  const { data: items } = await getSupabaseAdmin()
+    .from('case_studies')
+    .select('id, title, slug, summary, thumbnail_url, client, industry, tags, is_featured, sort_order')
+    .eq('is_published', true)
+    .order('sort_order', { ascending: true });
+
+  // Map Supabase fields to CaseStudyCard-compatible shape
+  const published = (items || []).map((cs) => ({
+    id: cs.id,
+    slug: cs.slug,
+    title: cs.title,
+    client: cs.client || '',
+    industry: cs.industry || '',
+    heroImage: cs.thumbnail_url || '',
+    summary: cs.summary || '',
+    tags: cs.tags || [],
+    year: new Date().getFullYear(),
+    problem: '',
+    approach: '',
+    solution: '',
+    outcome: '',
+    images: [],
+    featured: cs.is_featured,
+    published: true,
+    order: cs.sort_order,
+  }));
 
   return (
     <>

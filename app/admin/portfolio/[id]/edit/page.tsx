@@ -1,6 +1,6 @@
 import { redirect, notFound } from 'next/navigation'
 import { validateSession } from '@/lib/auth'
-import { supabaseAdmin } from '@/lib/supabase'
+import { getSupabaseAdmin } from '@/lib/supabase'
 import AdminNav from '../../../AdminNav'
 import PortfolioForm from '../../PortfolioForm'
 
@@ -8,7 +8,7 @@ export default async function EditPortfolioPage({ params }: { params: { id: stri
   const valid = await validateSession()
   if (!valid) redirect('/admin/login')
 
-  const { data: item } = await supabaseAdmin
+  const { data: item } = await getSupabaseAdmin()
     .from('portfolio_items')
     .select('*')
     .eq('id', params.id)
@@ -19,6 +19,11 @@ export default async function EditPortfolioPage({ params }: { params: { id: stri
   const initialData = {
     title: item.title,
     slug: item.slug,
+    client: item.client || '',
+    industry: item.industry || '',
+    year: item.year ? String(item.year) : '',
+    short_description: item.short_description || '',
+    overview: item.overview || '',
     description: item.description || '',
     thumbnail_url: item.thumbnail_url || '',
     images: (item.images || []).join('\n'),
