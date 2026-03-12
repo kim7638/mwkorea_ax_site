@@ -5,6 +5,10 @@ const SESSION_COOKIE = 'admin_session'
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
+  // Pass pathname to root layout via request header
+  const requestHeaders = new Headers(request.headers)
+  requestHeaders.set('x-pathname', pathname)
+
   // Only protect /admin/* routes (not /admin/login)
   if (pathname.startsWith('/admin') && pathname !== '/admin/login') {
     const token = request.cookies.get(SESSION_COOKIE)?.value
@@ -12,14 +16,11 @@ export async function middleware(request: NextRequest) {
     if (!token) {
       return NextResponse.redirect(new URL('/admin/login', request.url))
     }
-
-    // Token presence is checked here; full DB validation happens in server components/actions
-    // This keeps middleware fast (no DB call on every request)
   }
 
-  return NextResponse.next()
+  return NextResponse.next({ request: { headers: requestHeaders } })
 }
 
 export const config = {
-  matcher: ['/admin/:path*'],
+  matcher: ['/((?!_next/static|_next/image|favicon.ico).*)'],
 }

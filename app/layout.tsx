@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Sora, DM_Sans } from 'next/font/google';
+import { headers } from 'next/headers';
 import './globals.css';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
@@ -34,12 +35,16 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const headersList = headers();
+  const pathname = headersList.get('x-pathname') || '';
+  const isAdmin = pathname.startsWith('/admin');
+
   return (
     <html lang="en" className={`${sora.variable} ${dmSans.variable}`}>
       <body className="min-h-screen flex flex-col">
-        <Header />
+        {!isAdmin && <Header />}
         <main className="flex-1">{children}</main>
-        <Footer />
+        {!isAdmin && <Footer />}
       </body>
     </html>
   );
