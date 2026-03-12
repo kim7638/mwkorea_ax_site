@@ -1,5 +1,4 @@
 import { Metadata } from 'next';
-import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
@@ -72,13 +71,10 @@ export default async function PortfolioDetailPage({ params }: Props) {
             {/* Hero Image */}
             {item.thumbnail_url && (
               <div className="relative h-72 sm:h-96 rounded-2xl overflow-hidden">
-                <Image
+                <img
                   src={item.thumbnail_url}
                   alt={item.title}
-                  fill
-                  className="object-cover"
-                  priority
-                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 />
               </div>
             )}
@@ -108,12 +104,10 @@ export default async function PortfolioDetailPage({ params }: Props) {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {item.images.map((img: string, i: number) => (
                 <div key={i} className="relative h-52 sm:h-60 rounded-xl overflow-hidden bg-gray-100">
-                  <Image
+                  <img
                     src={img}
                     alt={`${item.title} image ${i + 1}`}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 33vw"
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                   />
                 </div>
               ))}

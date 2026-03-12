@@ -1,5 +1,4 @@
 import { Metadata } from 'next';
-import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ArrowLeft } from 'lucide-react';
@@ -47,13 +46,10 @@ export default async function CaseStudyDetailPage({ params }: Props) {
       {/* Hero Image */}
       <section className="relative h-[50vh] sm:h-[60vh] lg:h-[65vh] overflow-hidden bg-gray-900">
         {cs.hero_image ? (
-          <Image
+          <img
             src={cs.hero_image}
             alt={cs.title}
-            fill
-            className="object-cover opacity-70"
-            priority
-            sizes="100vw"
+            style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.7 }}
           />
         ) : (
           <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900" />
@@ -141,13 +137,11 @@ export default async function CaseStudyDetailPage({ params }: Props) {
             <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-6">Project Images</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {[cs.thumbnail_url].map((img: string, i: number) => (
-                <div key={i} className="relative h-56 sm:h-64 rounded-xl overflow-hidden bg-gray-200">
-                  <Image
+                <div key={i} className="rounded-xl overflow-hidden bg-gray-200 h-56 sm:h-64">
+                  <img
                     src={img}
                     alt={`${cs.title} image ${i + 1}`}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 33vw"
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                   />
                 </div>
               ))}
